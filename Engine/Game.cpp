@@ -21,6 +21,8 @@
 #include "MainWindow.h"
 #include "Game.h"
 #include "BattleScreen.h"
+#include "Bullet.h"
+
 
 Game::Game( MainWindow& wnd )
 	:
@@ -50,9 +52,16 @@ void Game::UpdateModel()
 		if (bScreen.gunAngle < -85) { bScreen.gunAngle = -85; }
 		bScreen.gunAngle--;
 	}
+	else if ((wnd.kbd.KeyIsPressed(VK_SPACE))) {	//Fire a Bullet
+		bullets[0].Create(bScreen.gunTip, bScreen.gunAngle);
+	}
+	
 }
 
 void Game::ComposeFrame()
 {
 	bScreen.DrawScene(gfx);
+	for (int i = 0; i < 100; i++) {
+		bullets[i].UpdateDraw(gfx);
+	}
 }

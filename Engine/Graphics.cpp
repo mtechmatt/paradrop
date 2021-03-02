@@ -272,6 +272,20 @@ void Graphics::DrawLine(int x0, int y0, int x1, int y1, Color color)
 	}
 }
 
+void Graphics::DrawCircle(int x, int y, int r, Color c)
+{
+	static const double PI = 3.1415926535;
+	double i, angle, x1, y1;
+
+	for (i = 0; i < 360; i += 0.1)
+	{
+		angle = i;
+		x1 = r * cos(angle * PI / 180);
+		y1 = r * sin(angle * PI / 180);
+		PutPixel(x + x1, y + y1, c);
+	}
+}
+
 
 Graphics::~Graphics()
 {

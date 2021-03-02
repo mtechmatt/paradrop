@@ -36,6 +36,7 @@ void BattleScreen::DrawGun(Graphics & gfx)
 	gunEndX = gunEndX+(gfx.ScreenWidth / 2);
 
 	gfx.DrawLine(gunBaseX, gunBaseY, (int)gunEndX, (int)gunEndY, { 100, 40, 100 });
+	gfx.DrawLine(gunBaseX+1, gunBaseY+1, (int)gunEndX+1, (int)gunEndY+1, { 100, 40, 100 });
 
 	//Set the Gun Tip lcoation as this will be a spawnpoint for the bullets.
 	gunTip.x = gunEndX;

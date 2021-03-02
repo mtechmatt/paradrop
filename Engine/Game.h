@@ -24,6 +24,7 @@
 #include "Mouse.h"
 #include "Graphics.h"
 #include "BattleScreen.h"
+#include "Bullet.h"
 
 class Game
 {
@@ -45,5 +46,6 @@ private:
 	/********************************/
 	/*  User Variables              */
 	int gunAngle = 0;  /* Gun angle goes from 0 to 180. 90 is staight up. */
+	Bullet bullets[100];
 	/********************************/
 };

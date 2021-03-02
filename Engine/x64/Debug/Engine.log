@@ -1,2 +1,4 @@
-﻿  Game.cpp
+﻿  Bullet.cpp
+c:\users\matty\source\repos\paradrop\engine\bullet.cpp(16): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
+c:\users\matty\source\repos\paradrop\engine\bullet.cpp(17): warning C4244: '+=': conversion from 'float' to 'int', possible loss of data
   Engine.vcxproj -> C:\Users\matty\Source\Repos\paradrop\x64\Debug\Engine.exe
