@@ -31,12 +31,13 @@ void BattleScreen::DrawGun(Graphics & gfx)
 	// CoSine will give us the Horizonal Offset
 	float gunEndY = gunLength * cos(gunAngle*PI/180);
 	gunEndY = gunBaseY - gunEndY;
-	//Y is working as expected
 
 	float gunEndX = gunLength * sin(gunAngle*PI / 180);
 	gunEndX = gunEndX+(gfx.ScreenWidth / 2);
 
-
 	gfx.DrawLine(gunBaseX, gunBaseY, (int)gunEndX, (int)gunEndY, { 100, 40, 100 });
 
+	//Set the Gun Tip lcoation as this will be a spawnpoint for the bullets.
+	gunTip.x = gunEndX;
+	gunTip.y = gunEndY;
 }
