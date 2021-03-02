@@ -23,6 +23,7 @@
 #include "Keyboard.h"
 #include "Mouse.h"
 #include "Graphics.h"
+#include "BattleScreen.h"
 
 class Game
 {
@@ -40,7 +41,9 @@ private:
 private:
 	MainWindow& wnd;
 	Graphics gfx;
+	BattleScreen bScreen;
 	/********************************/
 	/*  User Variables              */
+	int gunAngle = 0;  /* Gun angle goes from 0 to 180. 90 is staight up. */
 	/********************************/
 };

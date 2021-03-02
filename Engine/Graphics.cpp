@@ -240,6 +240,39 @@ Graphics::Graphics( HWNDKey& key )
 		_aligned_malloc( sizeof( Color ) * Graphics::ScreenWidth * Graphics::ScreenHeight,16u ) );
 }
 
+void Graphics::DrawLine(int x0, int y0, int x1, int y1, Color color)
+{
+	bool steep = false;
+	if (std::abs(x0 - x1) < std::abs(y0 - y1)) {
+		std::swap(x0, y0);
+		std::swap(x1, y1);
+		steep = true;
+	}
+	if (x0 > x1) {
+		std::swap(x0, x1);
+		std::swap(y0, y1);
+	}
+	int dx = x1 - x0;
+	int dy = y1 - y0;
+	float derror = std::abs(dy / float(dx));
+	float error = 0;
+	int y = y0;
+	for (int x = x0; x <= x1; x++) {
+		if (steep) {
+			PutPixel(y, x, color);
+		}
+		else {
+			PutPixel(x, y, color);
+		}
+		error += derror;
+		if (error > .5) {
+			y += (y1 > y0 ? 1 : -1);
+			error -= 1.;
+		}
+	}
+}
+
+
 Graphics::~Graphics()
 {
 	// free sysbuffer memory (aligned free)
@@ -316,6 +349,26 @@ void Graphics::PutPixel( int x,int y,Color c )
 	pSysBuffer[Graphics::ScreenWidth * y + x] = c;
 }
 
+void Graphics::DrawRect( int x0,int y0,int x1,int y1,Color c )
+{
+	if( x0 > x1 )
+	{
+		std::swap( x0,x1 );
+	}
+	if( y0 > y1 )
+	{
+		std::swap( y0,y1 );
+	}
+
+	for( int y = y0; y < y1; ++y )
+	{
+		for( int x = x0; x < x1; ++x )
+		{
+			PutPixel( x,y,c );
+		}
+	}
+}
+
 
 //////////////////////////////////////////////////
 //           Graphics Exception
@@ -356,5 +409,5 @@ std::wstring Graphics::Exception::GetErrorDescription() const
 
 std::wstring Graphics::Exception::GetExceptionType() const
 {
-	return L"Graphics Exception";
+	return L"Chili Graphics Exception";
 }

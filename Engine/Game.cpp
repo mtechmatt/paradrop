@@ -1,10 +1,5 @@
 /****************************************************************************************** 
- *   Matthew Thorne "ParaDrop" game.
- *  This uses the excellent Chili Framework, details below, and I have built on it as my
- *  first game.
- 
- 
- Chili DirectX Framework Version 16.07.20											  *	
+ *	Chili DirectX Framework Version 16.07.20											  *	
  *	Game.cpp																			  *
  *	Copyright 2016 PlanetChili.net <http://www.planetchili.net>							  *
  *																						  *
@@ -25,12 +20,14 @@
  ******************************************************************************************/
 #include "MainWindow.h"
 #include "Game.h"
+#include "BattleScreen.h"
 
 Game::Game( MainWindow& wnd )
 	:
 	wnd( wnd ),
 	gfx( wnd )
 {
+
 }
 
 void Game::Go()
@@ -43,8 +40,19 @@ void Game::Go()
 
 void Game::UpdateModel()
 {
+
+	/* Detect Left/Right Arrow Key and move gun accordingly */
+	if ((wnd.kbd.KeyIsPressed(VK_RIGHT)) ) {
+		if (bScreen.gunAngle > 85){ bScreen.gunAngle = 85; }
+		bScreen.gunAngle++;
+	}
+	else if ((wnd.kbd.KeyIsPressed(VK_LEFT)) ){
+		if (bScreen.gunAngle < -85) { bScreen.gunAngle = -85; }
+		bScreen.gunAngle--;
+	}
 }
 
 void Game::ComposeFrame()
 {
+	bScreen.DrawScene(gfx);
 }
